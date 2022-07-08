@@ -1,0 +1,38 @@
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* display: flex; */
+}
+
+.container.info {
+  background-color: rgb(163, 255, 255);
+}
+
+.container.warning {
+  background-color: rgb(255, 183, 183);
+}
+
+.wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn {
+  color: #000;
+  padding: 0.5rem;
+  border: none;
+}
+
+.btn:hover {
+  background-color: transparent;
+  color: #777;
+}
+
+.icon {
+  font-size: 2rem;
+}

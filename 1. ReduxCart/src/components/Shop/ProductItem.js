@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 
 import { shoppingCartActions } from '../../store/shoppingCartSlice';
+import { uiActions } from '../../store/uiSlice';
 import Card from '../UI/Card';
 import classes from './ProductItem.module.css';
 
@@ -10,6 +11,7 @@ const ProductItem = (props) => {
 
   function addToCartHandler() {
     dispatch(shoppingCartActions.addProduct({ id, title, price, description }));
+    dispatch(uiActions.addNotification({type: 'info', message: 'Product added to cart.'}))
   }
 
   return (
