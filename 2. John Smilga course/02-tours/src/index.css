@@ -96,6 +96,9 @@ p {
   margin-bottom: 1.25rem;
   color: var(--clr-grey-5);
 }
+.centered-text {
+  text-align: center;
+}
 @media screen and (min-width: 800px) {
   h1 {
     font-size: 4rem;
@@ -211,6 +214,7 @@ main {
   background: var(--clr-primary-10);
   padding: 0.25rem 0.5rem;
   border-radius: var(--radius);
+  font-weight: bold;
 }
 .single-tour footer {
   padding: 1.5rem 2rem;
