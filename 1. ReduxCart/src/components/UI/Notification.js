@@ -13,7 +13,6 @@ function Notification({notification}) {
   };
 
   useEffect(() => {
-    console.log('in useEffect');
     const timer = setTimeout(() => {
       removeNotification();
     }, 5000);
