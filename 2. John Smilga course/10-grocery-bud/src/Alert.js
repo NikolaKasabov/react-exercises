@@ -1,7 +1,17 @@
 import React, { useEffect } from 'react';
 
-const Alert = () => {
-  return <h2>alert component</h2>
+const Alert = ({ message, type, onCloseAlert }) => {
+  useEffect(() => {
+    const timeout = setTimeout(() => { 
+      onCloseAlert();
+    }, 3000);
+
+    return () => {
+      clearTimeout(timeout);
+    }
+  }, [message, onCloseAlert]);
+
+  return <p className={`alert alert-${type}`}>{message}</p>;
 }
 
 export default Alert
