@@ -1,12 +1,22 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Cocktail = () => {
+const Cocktail = ({ cocktail }) => {
   return (
-    <div>
-      <h2>cocktail component</h2>
-    </div>
-  )
+    <article className="cocktail">
+      <div className="img-container">
+        <img src={cocktail.strDrinkThumb} alt="" />
+      </div>
+
+      <div className="cocktail-footer">
+        <h3>{cocktail.strDrink}</h3>
+        <h4>{cocktail.strGlass}</h4>
+        <p>{cocktail.strAlcoholic}</p>
+        <Link to={`cocktail/${cocktail.idDrink}`}
+          className='btn btn-primary btn-details'>details</Link>
+      </div>
+    </article>
+  );
 }
 
-export default Cocktail
+export default Cocktail;
