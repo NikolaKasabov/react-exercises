@@ -241,3 +241,7 @@ p {
     font-size: 2rem;
   }
 }
+
+svg {
+  pointer-events: none;
+}
