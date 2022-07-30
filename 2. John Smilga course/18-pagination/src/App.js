@@ -21,7 +21,7 @@ function App() {
           })}
         </div>
 
-        <Pagination pages={10} onPageChange={setCurrentPage} />
+        <Pagination pages={data.length} onPageChange={setCurrentPage} />
       </section>
     </main>
   );
