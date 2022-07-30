@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useFetch } from './useFetch';
 import Follower from './Follower';
+import Pagination from './Pagination';
 
 function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const { data, loading } = useFetch();
-
-  console.log(data);
 
   return (
     <main>
@@ -21,6 +20,8 @@ function App() {
             return <Follower key={item.id} data={item} />;
           })}
         </div>
+
+        <Pagination pages={10} onPageChange={setCurrentPage} />
       </section>
     </main>
   );
