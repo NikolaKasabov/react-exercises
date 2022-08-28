@@ -1,11 +1,10 @@
-import React from 'react'
-import styled from 'styled-components'
-import { useFilterContext } from '../context/filter_context'
-import { getUniqueValues, formatPrice } from '../utils/helpers'
-import { FaCheck } from 'react-icons/fa'
+import React from 'react';
+import styled from 'styled-components';
+import { getUniqueValues, formatPrice } from '../utils/helpers';
+import { FaCheck } from 'react-icons/fa';
 
 const Filters = () => {
-  return <h4>filters</h4>
+  return <h4>filters</h4>;
 }
 
 const Wrapper = styled.section`
@@ -107,4 +106,4 @@ const Wrapper = styled.section`
   }
 `
 
-export default Filters
+export default Filters;
