@@ -9,7 +9,7 @@ const CartButtons = () => {
 
   return (
     <Wrapper className='cart-btn-wrapper'>
-      <Link to='/cart' className='cart-btn'>
+      <Link to='cart' className='cart-btn'>
         Cart
         <span className="cart-container">
           <FaShoppingCart />
