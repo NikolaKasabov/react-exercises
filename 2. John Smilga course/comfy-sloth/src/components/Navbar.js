@@ -5,15 +5,23 @@ import { FaBars } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { links } from '../utils/constants';
 import CartButtons from './CartButtons';
+import { useDispatch } from 'react-redux';
+import { uiActions } from '../store/uiSlice';
 
 const Nav = () => {
+  const dispatch = useDispatch();
+
+  function openSidebarHandler() {
+    dispatch(uiActions.openSidebar());
+  }
+
   return <NavContainer>
     <div className="nav-center">
       <div className="nav-header">
         <Link to='/'>
           <img src={logo} alt="comfy sloth" />
         </Link>
-        <button type='button' className='nav-toggle'>
+        <button type='button' className='nav-toggle' onClick={openSidebarHandler}>
           <FaBars />
         </button>
       </div>
@@ -26,9 +34,7 @@ const Nav = () => {
         })}
       </ul>
 
-      <div className="cart-btn-wrapper">
-        <CartButtons />
-      </div>
+      <CartButtons />
     </div>
   </NavContainer>;
 }
@@ -95,7 +101,7 @@ const NavContainer = styled.nav`
       }
     }
     .cart-btn-wrapper {
-      display: grid;
+      display: flex;
     }
   }
 `;

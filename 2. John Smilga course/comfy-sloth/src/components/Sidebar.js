@@ -1,13 +1,44 @@
 import React from 'react';
-import logo from '../assets/logo.svg';
 import { Link } from 'react-router-dom';
 import { FaTimes } from 'react-icons/fa';
-import { links } from '../utils/constants';
 import styled from 'styled-components';
+import { useSelector, useDispatch } from 'react-redux';
+
+import logo from '../assets/logo.svg';
+import { links } from '../utils/constants';
 import CartButtons from './CartButtons';
+import { uiActions } from '../store/uiSlice';
 
 const Sidebar = () => {
-  return <h4>sidebar</h4>;
+  const dispatch = useDispatch();
+  const { isSidebarOpen } = useSelector(store => store.ui);
+
+  function closeSidebarHandler() {
+    dispatch(uiActions.closeSidebar());
+  }
+
+  return (
+    <SidebarContainer>
+      <aside className={`sidebar ${isSidebarOpen ? 'show-sidebar' : ''}`}>
+        <div className="sidebar-header">
+          <img src={logo} alt="comfy sloth" className="logo" />
+          <button className="close-btn" onClick={closeSidebarHandler}>
+            <FaTimes />
+          </button>
+        </div>
+
+        <ul className="links">
+          {links.map(link => {
+            return <Link key={link.id} to={link.url} onClick={closeSidebarHandler}>
+              {link.text}
+            </Link>;
+          })}
+        </ul>
+
+        <CartButtons />
+      </aside>
+    </SidebarContainer>
+  );
 }
 
 const SidebarContainer = styled.div`

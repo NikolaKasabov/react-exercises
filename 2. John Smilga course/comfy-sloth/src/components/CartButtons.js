@@ -8,7 +8,7 @@ const CartButtons = () => {
   const { productsCount } = useSelector(store => store.cart);
 
   return (
-    <Wrapper>
+    <Wrapper className='cart-btn-wrapper'>
       <Link to='/cart' className='cart-btn'>
         Cart
         <span className="cart-container">
@@ -25,6 +25,8 @@ const Wrapper = styled.div`
   // grid-template-columns: 1fr 1fr;
   // align-items: center;
   // width: 225px;
+  display: flex;
+  justify-content: center;
 
   .cart-btn {
     color: var(--clr-grey-1);
