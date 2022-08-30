@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Navbar, Sidebar, Footer } from './components';
 import AboutPage from './pages/AboutPage';
 import HomePage from './pages/HomePage';
+import ProductsPage from './pages/ProductsPage';
 import { fetchProductsThunk } from './store/productsSlice';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='about' element={<AboutPage />} />
+        <Route path='products' element={<ProductsPage />} />
       </Routes>
 
       <Footer />

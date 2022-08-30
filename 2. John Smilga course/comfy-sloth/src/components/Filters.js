@@ -1,10 +1,82 @@
 import React from 'react';
 import styled from 'styled-components';
-import { getUniqueValues, formatPrice } from '../utils/helpers';
 import { FaCheck } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { getUniqueValues, formatPrice } from '../utils/helpers';
+import { productsActions } from '../store/productsSlice';
 
 const Filters = () => {
-  return <h4>filters</h4>;
+  const dispatch = useDispatch();
+  const {
+    allCategories,
+    category,
+    allCompanies,
+    company
+  } = useSelector(store => store.products.filters);
+
+  function filterChangeHandler(ev) {
+    let { name, value, type } = ev.target;
+    if (type === 'button') {
+      value = ev.target.dataset.value;
+    }
+    dispatch(productsActions.changeFilter({ name, value }));
+  }
+
+  return (
+    <Wrapper>
+      <div className="content">
+        <form onSubmit={ev => ev.preventDefault()}>
+          {/* input search start */}
+          <div className="form-control">
+            <input type="text" name='text' className="search-input" placeholder='search' onChange={filterChangeHandler} />
+          </div>
+          {/* input search end */}
+
+          {/* category start */}
+          <div className="form-control">
+            <h5>category</h5>
+            {allCategories.map(c => {
+              return (
+                <button type='button'
+                  key={c}
+                  name='category'
+                  className={c === category ? 'active' : ''}
+                  data-value={c}
+                  onClick={filterChangeHandler}
+                >
+                  {c}
+                </button>
+              );
+            })}
+          </div>
+          {/* category end */}
+
+          {/* company start */}
+          <div className="form-control">
+            <h5>company</h5>
+            <select name="company" value={company} className="company" onChange={filterChangeHandler}>
+              {allCompanies.map(c => {
+                return (
+                  <option key={c} value={c}>{c}</option>
+                );
+              })}
+            </select>
+          </div>
+          {/* company end */}
+
+          {/* colors start */}
+          <div className="form-control">
+            
+          </div>
+          {/* colors end */}
+
+          <div className="form-control"></div>
+          <div className="form-control"></div>
+        </form>
+      </div>
+    </Wrapper>
+  );
 }
 
 const Wrapper = styled.section`
