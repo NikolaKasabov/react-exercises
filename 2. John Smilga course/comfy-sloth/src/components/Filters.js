@@ -12,7 +12,9 @@ const Filters = () => {
     allCategories,
     category,
     allCompanies,
-    company
+    company,
+    allColors,
+    color,
   } = useSelector(store => store.products.filters);
 
   function filterChangeHandler(ev) {
@@ -67,7 +69,35 @@ const Filters = () => {
 
           {/* colors start */}
           <div className="form-control">
-            
+            <h5>colors</h5>
+            <div className="colors">
+              {allColors.map(c => {
+                if (c === 'all') {
+                  return (
+                    <button type='button'
+                      name='color'
+                      data-value={c}
+                      className={`all-btn ${c === color ? 'active' : ''}`}
+                      onClick={filterChangeHandler}
+                    >
+                      all
+                    </button>
+                  );
+                } else {
+                  return (
+                    <button type='button'
+                      name='color'
+                      data-value={c}
+                      className={`color-btn ${c === color ? 'active' : ''}`}
+                      style={{ backgroundColor: c }}
+                      onClick={filterChangeHandler}
+                    >
+                      {c === color && <FaCheck />}
+                    </button>
+                  );
+                }
+              })}
+            </div>
           </div>
           {/* colors end */}
 
