@@ -1,7 +1,7 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { getProductsMaxPrice, getUniqueValues } from '../utils/helpers';
+import { filterProducts, getProductsMaxPrice, getUniqueValues } from '../utils/helpers';
 
 export const fetchProductsThunk = createAsyncThunk(
   'products/fetchProducts',
@@ -22,19 +22,35 @@ const productsSlice = createSlice({
     filteredProducts: [],
     filters: {
       text: '',
-      maxPrice: 0,
       allCategories: [],
       category: 'all',
       allCompanies: [],
       company: 'all',
       allColors: [],
       color: 'all',
+      maxPrice: 0,
+      price: 0,
+      shipping: false,
     }
   },
   reducers: {
     changeFilter: (state, action) => {
       const { name, value } = action.payload;
       state.filters[name] = value;
+
+      state.filteredProducts = filterProducts(state.products, state.filters);
+    },
+    clearFilters: (state, action) => {
+      state.filters = {
+        ...state.filters,
+        text: '',
+        category: 'all',
+        company: 'all',
+        color: 'all',
+        price: state.filters.maxPrice,
+        shipping: false,
+      };
+      state.filteredProducts = state.products;
     },
   },
   extraReducers: {
@@ -45,7 +61,11 @@ const productsSlice = createSlice({
     [fetchProductsThunk.fulfilled]: (state, action) => { 
       state.isLoading = false;
       state.products = action.payload;
+      state.filteredProducts = action.payload;
+      
+      //set initial filters values
       state.filters.maxPrice = getProductsMaxPrice(action.payload);
+      state.filters.price = getProductsMaxPrice(action.payload);
       const categories = getUniqueValues(action.payload, 'category');
       state.filters.allCategories = ['all', ...categories];
       const companies = getUniqueValues(action.payload, 'company');

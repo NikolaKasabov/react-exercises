@@ -33,3 +33,37 @@ export function getProductsMaxPrice(products) {
   const prices = products.map(p => p.price);
   return Math.max(...prices);
 }
+
+export function filterProducts(allProducts, filters) {
+  let tempProducts = [...allProducts];
+
+  // filter by search text
+  tempProducts = tempProducts.filter(product => {
+    return product.name.toLowerCase().includes(filters.text.toLowerCase());
+  });
+
+  // filter by category
+  if (filters.category !== 'all') {
+    tempProducts = tempProducts.filter(product => product.category === filters.category);
+  }
+
+  // filter by company
+  if (filters.company !== 'all') {
+    tempProducts = tempProducts.filter(product => product.company === filters.company);
+  }
+
+  // filter by color
+  if (filters.color !== 'all') {
+    tempProducts = tempProducts.filter(product => product.colors.includes(filters.color));
+  }
+
+  // filter by price
+  tempProducts = tempProducts.filter(product => product.price <= filters.price);
+
+  // filter by shipping available
+  if (filters.shipping !== false) {
+    tempProducts = tempProducts.filter(product => product.shipping);
+  }
+
+  return tempProducts;
+}

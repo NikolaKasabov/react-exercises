@@ -9,12 +9,16 @@ import { productsActions } from '../store/productsSlice';
 const Filters = () => {
   const dispatch = useDispatch();
   const {
+    text,
     allCategories,
     category,
     allCompanies,
     company,
     allColors,
     color,
+    maxPrice,
+    price,
+    shipping,
   } = useSelector(store => store.products.filters);
 
   function filterChangeHandler(ev) {
@@ -22,7 +26,17 @@ const Filters = () => {
     if (type === 'button') {
       value = ev.target.dataset.value;
     }
+    if (type === 'range') {
+      value = +value;
+    }
+    if (type === 'checkbox') {
+      value = ev.target.checked;
+    }
     dispatch(productsActions.changeFilter({ name, value }));
+  }
+
+  function clearFiltersHandler() {
+    dispatch(productsActions.clearFilters());
   }
 
   return (
@@ -31,7 +45,12 @@ const Filters = () => {
         <form onSubmit={ev => ev.preventDefault()}>
           {/* input search start */}
           <div className="form-control">
-            <input type="text" name='text' className="search-input" placeholder='search' onChange={filterChangeHandler} />
+            <input type="text"
+              name='text'
+              className="search-input"
+              placeholder='search'
+              value={text}
+              onChange={filterChangeHandler} />
           </div>
           {/* input search end */}
 
@@ -75,6 +94,7 @@ const Filters = () => {
                 if (c === 'all') {
                   return (
                     <button type='button'
+                      key={c}
                       name='color'
                       data-value={c}
                       className={`all-btn ${c === color ? 'active' : ''}`}
@@ -86,6 +106,7 @@ const Filters = () => {
                 } else {
                   return (
                     <button type='button'
+                      key={c}
                       name='color'
                       data-value={c}
                       className={`color-btn ${c === color ? 'active' : ''}`}
@@ -101,9 +122,23 @@ const Filters = () => {
           </div>
           {/* colors end */}
 
-          <div className="form-control"></div>
-          <div className="form-control"></div>
+          {/* price start */}
+          <div className="form-control">
+            <h5>price</h5>
+            <p className="price">{formatPrice(price)}</p>
+            <input type="range" name="price" min='0' max={maxPrice} value={price} onChange={filterChangeHandler} />
+          </div>
+          {/* price end */}
+
+          {/* shipping start */}
+          <div className="form-control shipping">
+            <label htmlFor="shipping">free shipping</label>
+            <input type="checkbox" name="shipping" id="shipping" checked={shipping} onChange={filterChangeHandler} />
+          </div>
+          {/* shipping end */}
         </form>
+
+        <button className="clear-btn" type='button' onClick={clearFiltersHandler}>clear filters</button>
       </div>
     </Wrapper>
   );
