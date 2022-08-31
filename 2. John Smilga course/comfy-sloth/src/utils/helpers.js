@@ -67,3 +67,19 @@ export function filterProducts(allProducts, filters) {
 
   return tempProducts;
 }
+
+export function sortProducts(products, sortBy) {
+  const tempProducts = [...products];
+
+  if (sortBy === 'price-lowest') {
+    tempProducts.sort((a, b) => a.price - b.price);
+  } else if (sortBy === 'price-highest') {
+    tempProducts.sort((a, b) => b.price - a.price);
+  } else if (sortBy === 'name-a') {
+    tempProducts.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+  } else if (sortBy === 'name-z') {
+    tempProducts.sort((a, b) => b.name.toLowerCase().localeCompare(a.name.toLowerCase()));
+  }
+
+  return tempProducts;
+}

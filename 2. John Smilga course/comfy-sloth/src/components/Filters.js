@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { FaCheck } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getUniqueValues, formatPrice } from '../utils/helpers';
+import { formatPrice } from '../utils/helpers';
 import { productsActions } from '../store/productsSlice';
 
 const Filters = () => {
@@ -20,6 +20,13 @@ const Filters = () => {
     price,
     shipping,
   } = useSelector(store => store.products.filters);
+
+  // clear the filters on route change
+  useEffect(() => {
+    return () => {
+      dispatch(productsActions.clearFilters());
+    };
+  }, [dispatch]);
 
   function filterChangeHandler(ev) {
     let { name, value, type } = ev.target;

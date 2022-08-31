@@ -1,9 +1,51 @@
 import React from 'react';
 import { BsFillGridFill, BsList } from 'react-icons/bs';
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { productsActions } from '../store/productsSlice';
 
 const Sort = () => {
-  return <h4>sort </h4>;
+  const dispatch = useDispatch();
+  const {
+    sort: { productsView, sortBy },
+    filteredProducts,
+  } = useSelector(store => store.products);
+
+  function changeProductsViewHandler(value) {
+    dispatch(productsActions.changeProductsView(value));
+  }
+
+  function changeSortHandler(ev) {
+    dispatch(productsActions.changeSort(ev.target.value));
+  }
+
+  return (
+    <Wrapper>
+      <div className="btn-container">
+        <button className={productsView === 'grid' ? 'active' : ''}
+          onClick={() => changeProductsViewHandler('grid')}>
+          <BsFillGridFill />
+        </button>
+        <button className={productsView === 'list' ? 'active' : ''}
+          onClick={() => changeProductsViewHandler('list')}>
+          <BsList />
+        </button>
+      </div>
+
+      {/* <p>{filteredProducts.length} products found</p> */}
+      <hr />
+
+      <form>
+        <label htmlFor="sort">sort by</label>
+        <select name="sort" id="sort" className="sort-input" onChange={changeSortHandler}>
+          <option value='price-lowest'>price (lowest)</option>
+          <option value='price-highest'>price (highest)</option>
+          <option value='name-a'>name (a-z)</option>
+          <option value='name-z'>name (z-a)</option>
+        </select>
+      </form>
+    </Wrapper>
+  );
 }
 
 const Wrapper = styled.section`

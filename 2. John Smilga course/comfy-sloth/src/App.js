@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import { Navbar, Sidebar, Footer } from './components';
 import AboutPage from './pages/AboutPage';
+import ErrorPage from './pages/ErrorPage';
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
 import { fetchProductsThunk } from './store/productsSlice';
@@ -24,6 +25,7 @@ function App() {
         <Route path='/' element={<HomePage />} />
         <Route path='about' element={<AboutPage />} />
         <Route path='products' element={<ProductsPage />} />
+        <Route path='*' element={<ErrorPage />} />
       </Routes>
 
       <Footer />
