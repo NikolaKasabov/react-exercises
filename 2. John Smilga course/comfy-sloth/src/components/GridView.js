@@ -7,6 +7,12 @@ import Product from './Product';
 const GridView = () => {
   const { filteredProducts } = useSelector(store => store.products);
 
+  if (filteredProducts.length === 0) {
+    return <Wrapper>
+      <h5 style={{ textTransform: 'none' }}>Sorry, no products matched your search.</h5>
+    </Wrapper>;
+  }
+
   return (
     <Wrapper>
       <div className="products-container">

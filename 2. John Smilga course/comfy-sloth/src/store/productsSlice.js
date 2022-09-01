@@ -54,6 +54,10 @@ const productsSlice = createSlice({
         price: state.filters.maxPrice,
         shipping: false,
       };
+      state.sort = {
+        productsView: 'grid',
+        sortBy: 'price-lowest',
+      };
       state.filteredProducts = state.products;
     },
     changeProductsView: (state, action) => {
