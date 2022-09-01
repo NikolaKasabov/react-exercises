@@ -1,8 +1,28 @@
-import React from 'react'
-import styled from 'styled-components'
-import { BsStarFill, BsStarHalf, BsStar } from 'react-icons/bs'
-const Stars = () => {
-  return <h4>stars</h4>
+import React from 'react';
+import styled from 'styled-components';
+import { BsStarFill, BsStarHalf, BsStar } from 'react-icons/bs';
+import { getStarsAsArray } from '../utils/helpers';
+
+const Stars = ({stars, reviews}) => {
+  return (
+    <Wrapper>
+      <div className="stars">
+        {getStarsAsArray(stars).map((num, index) => {
+          if (num === 1) {
+            return <span key={index}><BsStarFill /></span>;
+          } else if (num === 0) {
+            return <span key={index}><BsStar /></span>;
+          } else {
+            return <span key={index}><BsStarHalf /></span>;
+          }
+        })}
+      </div>
+
+      <p className="reviews">
+        {`(${reviews}) customer reviews`}
+      </p>
+    </Wrapper>
+  );
 }
 
 const Wrapper = styled.div`
@@ -18,5 +38,6 @@ const Wrapper = styled.div`
     margin-bottom: 0;
   }
   margin-bottom: 0.5rem;
-`
-export default Stars
+`;
+
+export default Stars;

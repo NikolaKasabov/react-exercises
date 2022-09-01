@@ -24,7 +24,7 @@ const ListView = () => {
               <h4>{product.name}</h4>
               <h5 className="price">{formatPrice(product.price)}</h5>
               <p>{`${product.description.slice(0, 150)} ...`}</p>
-              <Link to={`products/${product.id}`} className='btn'>Details</Link>
+              <Link to={`/products/${product.id}`} className='btn'>Details</Link>
             </div>
           </article>
         );

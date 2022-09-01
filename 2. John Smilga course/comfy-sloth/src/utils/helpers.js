@@ -83,3 +83,21 @@ export function sortProducts(products, sortBy) {
 
   return tempProducts;
 }
+
+// returns array of numbers representing the stars, e.g.: for 3.6 stars -> [1, 1, 1, 0.6, 0]
+export function getStarsAsArray(stars = 0) {
+  const starsNumbers = [0, 0, 0, 0, 0];
+  const hasHalfStar = stars % 1 !== 0;
+  
+  // add full stars
+  for (let i = 0; i < Math.floor(stars); i++){
+    starsNumbers[i] = 1;
+  }
+
+  // add half star, if it has one
+  if (hasHalfStar) {
+    starsNumbers[Math.floor(stars)] = stars % 1;
+  }
+
+  return starsNumbers.slice(0, 5);
+}

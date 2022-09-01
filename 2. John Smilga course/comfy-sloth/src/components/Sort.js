@@ -7,7 +7,7 @@ import { productsActions } from '../store/productsSlice';
 const Sort = () => {
   const dispatch = useDispatch();
   const {
-    sort: { productsView, sortBy },
+    sort: { productsView },
     filteredProducts,
   } = useSelector(store => store.products);
 

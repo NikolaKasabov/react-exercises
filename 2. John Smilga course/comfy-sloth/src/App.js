@@ -7,6 +7,7 @@ import AboutPage from './pages/AboutPage';
 import ErrorPage from './pages/ErrorPage';
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
+import SingleProductPage from './pages/SingleProductPage';
 import { fetchProductsThunk } from './store/productsSlice';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path='/' element={<HomePage />} />
         <Route path='about' element={<AboutPage />} />
         <Route path='products' element={<ProductsPage />} />
+        <Route path='products/:id' element={<SingleProductPage />} />
         <Route path='*' element={<ErrorPage />} />
       </Routes>
 

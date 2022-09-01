@@ -1,12 +1,23 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+import { products_url, single_product_url } from '../utils/constants';
 import { filterProducts, getProductsMaxPrice, getUniqueValues, sortProducts } from '../utils/helpers';
 
 export const fetchProductsThunk = createAsyncThunk(
   'products/fetchProducts',
   (arg, thunkAPI) => {
-    return axios.get('https://course-api.com/react-store-products')
+    return axios.get(products_url)
+      .then(res => {
+        return res.data;
+      });
+  }
+);
+
+export const fetchSingleProductThunk = createAsyncThunk(
+  'products/fetchSingleProduct',
+  (id, thunkAPI) => {
+    return axios.get(single_product_url + id)
       .then(res => {
         return res.data;
       });
@@ -20,6 +31,7 @@ const productsSlice = createSlice({
     isLoading: false,
     error: null,
     filteredProducts: [],
+    selectedProduct: null,
     filters: {
       text: '',
       allCategories: [],
@@ -58,7 +70,7 @@ const productsSlice = createSlice({
         productsView: 'grid',
         sortBy: 'price-lowest',
       };
-      state.filteredProducts = state.products;
+      state.filteredProducts = sortProducts(state.products, 'price-lowest');
     },
     changeProductsView: (state, action) => {
       state.sort.productsView = action.payload;
@@ -89,6 +101,18 @@ const productsSlice = createSlice({
       state.filters.allColors = ['all', ...colors];
     },
     [fetchProductsThunk.rejected]: (state, action) => { 
+      state.isLoading = false;
+      state.error = action.error?.message;
+    },
+    [fetchSingleProductThunk.pending]: (state, action) => {
+      state.isLoading = true;
+      state.error = null;
+    },
+    [fetchSingleProductThunk.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.selectedProduct = action.payload;
+    },
+    [fetchSingleProductThunk.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.error?.message;
     },
