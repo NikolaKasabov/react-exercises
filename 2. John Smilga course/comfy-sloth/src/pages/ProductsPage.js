@@ -11,6 +11,7 @@ const ProductsPage = () => {
           <Filters />
           <div>
             <Sort />
+            <ProductList />
           </div>
         </div>
       </Wrapper>

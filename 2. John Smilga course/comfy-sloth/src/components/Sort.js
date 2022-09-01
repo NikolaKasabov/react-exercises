@@ -32,7 +32,7 @@ const Sort = () => {
         </button>
       </div>
 
-      {/* <p>{filteredProducts.length} products found</p> */}
+      <p>{filteredProducts.length} products found</p>
       <hr />
 
       <form>
