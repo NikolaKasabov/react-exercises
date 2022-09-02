@@ -88,9 +88,9 @@ export function sortProducts(products, sortBy) {
 export function getStarsAsArray(stars = 0) {
   const starsNumbers = [0, 0, 0, 0, 0];
   const hasHalfStar = stars % 1 !== 0;
-  
+
   // add full stars
-  for (let i = 0; i < Math.floor(stars); i++){
+  for (let i = 0; i < Math.floor(stars); i++) {
     starsNumbers[i] = 1;
   }
 
@@ -100,4 +100,18 @@ export function getStarsAsArray(stars = 0) {
   }
 
   return starsNumbers.slice(0, 5);
+}
+
+export function calcProductsAmountAndSum(products) {
+  const result = products.reduce((acc, cur) => {
+    const currentProductSum = cur.amount * cur.price;
+    acc.totalSum += currentProductSum;
+    acc.productsAmount += cur.amount;
+    return acc;
+  }, {
+    productsAmount: 0,
+    totalSum: 0,
+  });
+
+  return result;
 }

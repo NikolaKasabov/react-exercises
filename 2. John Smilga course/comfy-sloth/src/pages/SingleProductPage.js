@@ -48,15 +48,25 @@ const SingleProductPage = () => {
             <Stars reviews={selectedProduct?.reviews} stars={selectedProduct?.stars} />
             <h5 className="price">{formatPrice(selectedProduct?.price)}</h5>
             <p className="desc">{selectedProduct?.description}</p>
+
             <p className="info">
-              <span>Available: </span>
+              <span>Available:</span>
               {selectedProduct?.stock === 0
                 ? 'out of stock'
                 : 'in stock'
               }
             </p>
-            <p className="info"></p>
-            <p className="info"></p>
+            <p className="info">
+              <span>SKU:</span>
+              {selectedProduct?.id}
+            </p>
+            <p className="info">
+              <span>Brand:</span>
+              {selectedProduct?.company}
+            </p>
+            <hr />
+
+            {selectedProduct?.stock > 0 && <AddToCart product={selectedProduct} />}
           </section>
         </div>
       </div>

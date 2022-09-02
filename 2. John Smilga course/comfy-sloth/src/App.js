@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import { Navbar, Sidebar, Footer } from './components';
 import AboutPage from './pages/AboutPage';
+import CartPage from './pages/CartPage';
 import ErrorPage from './pages/ErrorPage';
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
@@ -27,6 +28,7 @@ function App() {
         <Route path='about' element={<AboutPage />} />
         <Route path='products' element={<ProductsPage />} />
         <Route path='products/:id' element={<SingleProductPage />} />
+        <Route path='cart' element={<CartPage />} />
         <Route path='*' element={<ErrorPage />} />
       </Routes>
 

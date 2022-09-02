@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const CartButtons = () => {
-  const { productsCount } = useSelector(store => store.cart);
+  const { productsAmount } = useSelector(store => store.cart);
 
   return (
     <Wrapper className='cart-btn-wrapper'>
@@ -13,7 +13,7 @@ const CartButtons = () => {
         Cart
         <span className="cart-container">
           <FaShoppingCart />
-          <span className="cart-value">{productsCount}</span>
+          <span className="cart-value">{productsAmount}</span>
         </span>
       </Link>
     </Wrapper>

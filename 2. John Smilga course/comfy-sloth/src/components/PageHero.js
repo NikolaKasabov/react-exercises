@@ -12,7 +12,7 @@ const PageHero = ({ steps }) => {
             if (index === steps.length - 1) {
               return `/ ${step}`;
             } else {
-              return <Link key={index} to={step}>/ {step}</Link>;
+              return <Link key={index} to={'/' + step}>/ {step}</Link>;
             }
           })}
         </h3>
