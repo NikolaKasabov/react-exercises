@@ -1,12 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { calcProductsAmountAndSum } from '../utils/helpers';
 
+// get the initial data from local storage, if such exists
+const lsProducts = JSON.parse(localStorage.getItem('cart'));
+let lsProductsAmount, lsTotalSum;
+if (lsProducts) {
+  const { productsAmount: pa, totalSum: ts } = calcProductsAmountAndSum(lsProducts);
+  lsProductsAmount = pa;
+  lsTotalSum = ts;
+}
+
 const cartSlice = createSlice({
   name: 'cart',
   initialState: {
-    products: [],
-    productsAmount: 0,
-    totalSum: 0,
+    products: lsProducts || [],
+    productsAmount: lsProductsAmount || 0,
+    totalSum: lsTotalSum || 0,
   },
   reducers: {
     addToCart: (state, action) => {
@@ -43,6 +52,9 @@ const cartSlice = createSlice({
       const { productsAmount, totalSum } = calcProductsAmountAndSum(state.products);
       state.productsAmount = productsAmount;
       state.totalSum = totalSum;
+
+      // save the cart products to local storage
+      localStorage.setItem('cart', JSON.stringify(state.products));
     },
   },
 });
