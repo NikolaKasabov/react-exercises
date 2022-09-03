@@ -1,12 +1,29 @@
-import React from 'react'
-import styled from 'styled-components'
-import { Link } from 'react-router-dom'
-import CartColumns from './CartColumns'
-import CartItem from './CartItem'
-import CartTotals from './CartTotals'
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+import CartColumns from './CartColumns';
+import CartItem from './CartItem';
+import CartTotals from './CartTotals';
 
 const CartContent = () => {
-  return <h4>cart content </h4>
+  const { products, productsAmount, totalSum } = useSelector(store => store.cart);
+
+  return (
+    <Wrapper className='section section-center'>
+      <CartColumns />
+      {products.map(product => {
+        return <CartItem key={product.id} {...product} />;
+      })}
+      <hr />
+      <div className="link-container">
+        <Link to='/products' className='link-btn'>continue shopping</Link>
+        <button className="link-btn clear-btn" type='button'>clear shopping cart</button>
+      </div>
+      <CartTotals />
+    </Wrapper>
+  );
 }
 const Wrapper = styled.section`
   .link-container {
@@ -29,5 +46,6 @@ const Wrapper = styled.section`
   .clear-btn {
     background: var(--clr-black);
   }
-`
-export default CartContent
+`;
+
+export default CartContent;

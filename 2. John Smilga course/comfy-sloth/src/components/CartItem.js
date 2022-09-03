@@ -1,11 +1,48 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FaTrash } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
+
 import { formatPrice } from '../utils/helpers';
 import AmountButtons from './AmountButtons';
-import { FaTrash } from 'react-icons/fa';
+import { cartActions } from '../store/cartSlice';
 
-const CartItem = () => {
-  return <h4>cart item</h4>;
+const CartItem = ({ id, image, name, color, price, amount }) => {
+  const dispatch = useDispatch();
+
+  function decreaseAmountHandler() {
+    dispatch(cartActions.decreaseProductAmount(id));
+  }
+
+  function increaseAmountHandler() {
+    dispatch(cartActions.increaseProductAmount(id));
+  }
+
+  function removeFromCartHandler() {
+    dispatch(cartActions.removeFromCart(id));
+  }
+
+  return (
+    <Wrapper>
+      <div className="title">
+        <img src={image} alt={name} />
+        <div>
+          <h5 className='name'>{name}</h5>
+          <p className="color">
+            color :
+            <span style={{ backgroundColor: color }}></span>
+          </p>
+          <h5 className="price-small">{formatPrice(price)}</h5>
+        </div>
+      </div>
+      <h5 className="price">{formatPrice(price)}</h5>
+      <AmountButtons amount={amount} decrease={decreaseAmountHandler} increase={increaseAmountHandler} />
+      <h5 className="subtotal">{formatPrice(price * amount)}</h5>
+      <button className="remove-btn" onClick={removeFromCartHandler}>
+        <FaTrash />
+      </button>
+    </Wrapper>
+  );
 }
 
 const Wrapper = styled.article`
@@ -142,6 +179,6 @@ const Wrapper = styled.article`
       }
     }
   }
-`
+`;
 
-export default CartItem
+export default CartItem;

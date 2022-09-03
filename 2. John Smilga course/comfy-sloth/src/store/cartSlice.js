@@ -56,6 +56,50 @@ const cartSlice = createSlice({
       // save the cart products to local storage
       localStorage.setItem('cart', JSON.stringify(state.products));
     },
+    decreaseProductAmount: (state, action) => {
+      const id = action.payload;
+      const product = state.products.find(p => p.id === id);
+      product.amount--;
+      if (product.amount < 1) {
+        product.amount = 1;
+      }
+
+      // calculate productsAmount and totalSum
+      const { productsAmount, totalSum } = calcProductsAmountAndSum(state.products);
+      state.productsAmount = productsAmount;
+      state.totalSum = totalSum;
+
+      // save the cart products to local storage
+      localStorage.setItem('cart', JSON.stringify(state.products));
+    },
+    increaseProductAmount: (state, action) => {
+      const id = action.payload;
+      const product = state.products.find(p => p.id === id);
+      product.amount++;
+      if (product.amount > 5) {
+        product.amount = 5;
+      }
+
+      // calculate productsAmount and totalSum
+      const { productsAmount, totalSum } = calcProductsAmountAndSum(state.products);
+      state.productsAmount = productsAmount;
+      state.totalSum = totalSum;
+
+      // save the cart products to local storage
+      localStorage.setItem('cart', JSON.stringify(state.products));
+    },
+    removeFromCart: (state, action) => {
+      const id = action.payload;
+      state.products = state.products.filter(product => product.id !== id);
+
+      // calculate productsAmount and totalSum
+      const { productsAmount, totalSum } = calcProductsAmountAndSum(state.products);
+      state.productsAmount = productsAmount;
+      state.totalSum = totalSum;
+
+      // save the cart products to local storage
+      localStorage.setItem('cart', JSON.stringify(state.products));
+    },
   },
 });
 

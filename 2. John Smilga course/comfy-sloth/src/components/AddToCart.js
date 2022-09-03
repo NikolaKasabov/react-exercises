@@ -12,7 +12,6 @@ const AddToCart = ({ product }) => {
   const [amount, setAmount] = useState(1);
   const dispatch = useDispatch();
 
-
   function colorClickHandler(color) {
     setSelectedColor(color);
   }
