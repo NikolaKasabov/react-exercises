@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { Navbar, Sidebar, Footer } from './components';
+import ScrollToTop from './components/ScrollToTop';
 import AboutPage from './pages/AboutPage';
 import CartPage from './pages/CartPage';
 import ErrorPage from './pages/ErrorPage';
@@ -20,6 +21,7 @@ function App() {
 
   return <>
     <BrowserRouter>
+      <ScrollToTop />
       <Navbar />
       <Sidebar />
 

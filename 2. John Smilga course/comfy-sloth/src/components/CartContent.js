@@ -1,14 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import CartColumns from './CartColumns';
 import CartItem from './CartItem';
 import CartTotals from './CartTotals';
+import { cartActions } from '../store/cartSlice';
 
 const CartContent = () => {
+  const dispatch = useDispatch();
   const { products, productsAmount, totalSum } = useSelector(store => store.cart);
+
+  function clearCartHandler() {
+    dispatch(cartActions.clearCart());
+  }
 
   return (
     <Wrapper className='section section-center'>
@@ -19,9 +25,14 @@ const CartContent = () => {
       <hr />
       <div className="link-container">
         <Link to='/products' className='link-btn'>continue shopping</Link>
-        <button className="link-btn clear-btn" type='button'>clear shopping cart</button>
+        <button className="link-btn clear-btn"
+          type='button'
+          onClick={clearCartHandler}
+        >
+          clear shopping cart
+        </button>
       </div>
-      <CartTotals />
+      <CartTotals totalSum={totalSum} />
     </Wrapper>
   );
 }

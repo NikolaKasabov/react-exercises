@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 
 const Contact = () => {
+  const inputRef = useRef(null);
+
+  function submitHandler(ev) {
+    ev.preventDefault();
+    inputRef.current.value = '';
+  }
+
   return (
     <Wrapper>
       <div className="section-center">
         <h3>Join our newsletter and get 20% off</h3>
         <div className="content">
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat sint unde quaerat ratione soluta veniam provident adipisci cumque eveniet tempore?</p>
-          
-          <form className="contact-form">
-            <input type="email" className="form-input" placeholder='enter email' />
+
+          <form className="contact-form" onSubmit={submitHandler}>
+            <input type="email" className="form-input" placeholder='enter email' ref={inputRef} />
             <button className="submit-btn" type='submit'>subscribe</button>
           </form>
         </div>

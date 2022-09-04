@@ -1,10 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { formatPrice } from '../utils/helpers';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
-const CartTotals = () => {
-  return <h4>cart totals</h4>;
+import { formatPrice } from '../utils/helpers';
+import { shippingFee } from '../utils/constants';
+import Modal from './Modal';
+import { cartActions } from '../store/cartSlice';
+
+const CartTotals = ({ totalSum }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  function closeModalHandler() {
+    setIsModalOpen(false);
+    dispatch(cartActions.clearCart());
+    navigate('/');
+  }
+
+  return (
+    <Wrapper>
+      <div>
+        <article>
+          <h5>
+            subtotal :
+            <span>{formatPrice(totalSum)}</span>
+          </h5>
+          <p>
+            shipping fee :
+            <span>{formatPrice(shippingFee)}</span>
+          </p>
+          <hr />
+          <h4>
+            order total :
+            <span>{formatPrice(totalSum + shippingFee)}</span>
+          </h4>
+        </article>
+        <button className="btn" onClick={() => setIsModalOpen(true)}>complete order</button>
+      </div>
+
+      {isModalOpen && (
+        <Modal closeClick={closeModalHandler}
+          okClick={closeModalHandler}
+        >
+          <div className='message'>Your order will be sent to you.</div>
+        </Modal>
+      )}
+    </Wrapper>
+  );
 }
 
 const Wrapper = styled.section`
@@ -37,6 +81,9 @@ const Wrapper = styled.section`
     text-align: center;
     font-weight: 700;
   }
-`
+  .message{
+    font-size: 1.5rem;
+  }
+`;
 
 export default CartTotals;

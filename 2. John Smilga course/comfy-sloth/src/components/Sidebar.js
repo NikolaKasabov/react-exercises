@@ -35,7 +35,7 @@ const Sidebar = () => {
           })}
         </ul>
 
-        <CartButtons />
+        <CartButtons closeSidebar />
       </aside>
     </SidebarContainer>
   );

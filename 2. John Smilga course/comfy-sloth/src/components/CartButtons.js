@@ -1,15 +1,23 @@
 import React from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { uiActions } from '../store/uiSlice';
 
-const CartButtons = () => {
+const CartButtons = ({ closeSidebar }) => {
+  const dispatch = useDispatch();
   const { productsAmount } = useSelector(store => store.cart);
+
+  function clickHandler() {
+    if (closeSidebar) {
+      dispatch(uiActions.closeSidebar());
+    }
+  }
 
   return (
     <Wrapper className='cart-btn-wrapper'>
-      <Link to='cart' className='cart-btn'>
+      <Link to='cart' className='cart-btn' onClick={clickHandler}>
         Cart
         <span className="cart-container">
           <FaShoppingCart />

@@ -4,6 +4,7 @@ const uiSlice = createSlice({
   name: 'ui',
   initialState: {
     isSidebarOpen: false,
+    isModalOpen: false,
   },
   reducers: {
     openSidebar: (state, action) => {

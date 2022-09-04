@@ -100,6 +100,11 @@ const cartSlice = createSlice({
       // save the cart products to local storage
       localStorage.setItem('cart', JSON.stringify(state.products));
     },
+    clearCart: (state, action) => {
+      state.products = [];
+      state.productsAmount = 0;
+      state.totalSum = 0;
+    },
   },
 });
 
