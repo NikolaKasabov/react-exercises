@@ -10,7 +10,7 @@ import { cartActions } from '../store/cartSlice';
 
 const CartContent = () => {
   const dispatch = useDispatch();
-  const { products, productsAmount, totalSum } = useSelector(store => store.cart);
+  const { products, totalSum } = useSelector(store => store.cart);
 
   function clearCartHandler() {
     dispatch(cartActions.clearCart());

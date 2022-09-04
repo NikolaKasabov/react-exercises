@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { formatPrice } from '../utils/helpers';
@@ -83,6 +83,7 @@ const Wrapper = styled.section`
   }
   .message{
     font-size: 1.5rem;
+    font-weight: bold;
   }
 `;
 

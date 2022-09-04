@@ -10,11 +10,11 @@ const ProductImages = ({ images }) => {
 
   return (
     <Wrapper>
-      <img src={images[selectedIndex]?.url} alt="product image" className="main" />
+      <img src={images[selectedIndex]?.url} alt="product" className="main" />
       <div className="gallery">
         {images.map((image, index) => {
           return (
-            <img key={image.id} src={image.url} alt="product image"
+            <img key={image.id} src={image.url} alt="product"
               className={`${index === selectedIndex ? 'active' : ''}`}
               onClick={() => clickImageHandler(index)}
             />

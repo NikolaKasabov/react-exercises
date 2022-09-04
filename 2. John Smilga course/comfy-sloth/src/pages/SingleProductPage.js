@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,7 +13,7 @@ import {
   Stars,
   PageHero,
 } from '../components';
-import { fetchSingleProductThunk, productsActions } from '../store/productsSlice';
+import { fetchSingleProductThunk } from '../store/productsSlice';
 
 const SingleProductPage = () => {
   const { id } = useParams();
