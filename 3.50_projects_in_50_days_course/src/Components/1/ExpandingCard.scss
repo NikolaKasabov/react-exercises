@@ -1,0 +1,25 @@
+.expandingCard {
+  background-image: url("../../../assets/img/1.jpg");
+  background-position: center;
+  flex: 0.5;
+  transition: flex 0.7s ease-in;
+  position: relative;
+  border-radius: 20px;
+
+  h3 {
+    color: white;
+    opacity: 0;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+  }
+}
+
+.expandingCard.active {
+  flex: 10;
+
+  h3 {
+    opacity: 1;
+    transition: opacity 0.3s ease-in 0.4s;
+  }
+}
