@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import './ProgressSteps.scss';
+import ProgressStepsCircle from './ProgressStepsCircle';
 
 function calcInnerLineWidth(steps, activeStep) {
   const lineSteps = steps - 1;
@@ -15,7 +16,10 @@ function ProgressSteps({ steps }) {
 
   for (let i = 1; i <= steps; i++) {
     circles.push((
-      <div className={`circle ${i <= activeStep ? 'active' : ''}`}>{i}</div>
+      <ProgressStepsCircle key={i}
+        isActive={i <= activeStep}
+        number={i}
+      />
     ));
   }
 
@@ -47,7 +51,7 @@ function ProgressSteps({ steps }) {
           disabled={activeStep === 1}
         >prev</button>
         <button className='button'
-          onClick={nextClickHandler}  
+          onClick={nextClickHandler}
           disabled={activeStep === steps}
         >next</button>
       </div>
