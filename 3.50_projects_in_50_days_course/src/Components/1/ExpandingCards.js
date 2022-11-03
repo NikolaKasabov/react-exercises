@@ -24,7 +24,7 @@ function ExpandingCards() {
   }
 
   return (
-    <div className='expandingCards'>
+    <div className='expanding-cards'>
       {cards}
     </div>
   );

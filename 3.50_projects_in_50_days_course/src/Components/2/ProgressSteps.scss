@@ -1,5 +1,5 @@
-.progressSteps {
-  .lineContainer {
+.progress-steps {
+  .line-container {
     height: 4px;
     min-width: 500px;
     position: relative;
@@ -12,14 +12,14 @@
       top: 0;
       left: 0;
 
-      .innerLine {
+      .inner-line {
         height: 100%;
         background-color: #3589cd;
         transition: all 0.3s ease-in;
       }
     }
 
-    .circlesContainer {
+    .circles-container {
       width: 100%;
       position: absolute;
       top: 50%;

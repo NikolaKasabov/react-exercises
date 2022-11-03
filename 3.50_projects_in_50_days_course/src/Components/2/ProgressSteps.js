@@ -10,7 +10,7 @@ function calcInnerLineWidth(steps, activeStep) {
 }
 
 function ProgressSteps({ steps }) {
-  const [activeStep, setActiveStep] = useState(4);
+  const [activeStep, setActiveStep] = useState(1);
 
   const circles = [];
 
@@ -32,15 +32,15 @@ function ProgressSteps({ steps }) {
   }
 
   return (
-    <div className='progressSteps'>
-      <div className='lineContainer'>
+    <div className='progress-steps'>
+      <div className='line-container'>
         <div className='line'>
-          <div className='innerLine'
+          <div className='inner-line'
             style={{ width: calcInnerLineWidth(steps, activeStep) }}
           ></div>
         </div>
 
-        <div className='circlesContainer'>
+        <div className='circles-container'>
           {circles}
         </div>
       </div>

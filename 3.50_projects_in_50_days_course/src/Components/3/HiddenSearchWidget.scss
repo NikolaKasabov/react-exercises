@@ -1,0 +1,44 @@
+.hidden-search-widget {
+  position: relative;
+
+  input {
+    padding-left: 10px;
+    outline: none;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    transition: width 0.3s ease-in;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    color: #555;
+  }
+
+  button {
+    border: none;
+    outline: none;
+  }
+
+  .icon {
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 0.3s ease-in;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+}
+
+.hidden-search-widget.open {
+  input {
+    width: 250px;
+  }
+  
+  .icon {
+    border-radius: 0 10px 10px 0;
+    transform: translateX(200px);
+  }
+}
