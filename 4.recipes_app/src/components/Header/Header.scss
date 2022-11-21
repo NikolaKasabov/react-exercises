@@ -1,0 +1,17 @@
+@import "../../variables.scss";
+
+.header {
+  min-height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $primaryColor;
+
+  .logo {
+    font-size: 20px;
+    font-weight: 500;
+    span {
+      color: $primaryColor;
+    }
+  }
+}
