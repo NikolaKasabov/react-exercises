@@ -1,0 +1,22 @@
+@import '../../variables.scss';
+
+.nav {
+  display: flex;
+  gap: 30px;
+  font-weight: 500;
+  color: #000;
+
+  & > * {
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+
+  & > *:visited {
+    color: #000;
+  }
+
+  & > *:hover {
+    color: $primaryColor;
+  }
+}

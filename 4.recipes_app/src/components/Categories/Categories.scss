@@ -1,0 +1,39 @@
+@import '../../variables.scss';
+
+.categories {
+  letter-spacing: 1px;
+
+  h1 {
+    color: #495057;
+    text-align: center;
+    margin: 40px 0;
+  }
+
+  .categories-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+  }
+
+  .category {
+    cursor: pointer;
+    box-shadow: 0 2px 2px 1px rgb(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.2s ease-in;
+    
+    &:hover {
+      box-shadow: 0 2px 2px 1px rgba($color: $primaryColor, $alpha: 0.3);
+    }
+
+    img {
+      width: 320px;
+    }
+
+    h3 {
+      margin: 20px 0;
+      text-align: center;
+    }
+  }
+}

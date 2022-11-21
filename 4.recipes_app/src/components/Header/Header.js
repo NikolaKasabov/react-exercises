@@ -1,3 +1,4 @@
+import Nav from '../Nav/Nav';
 import './Header.scss';
 
 function Header() {
@@ -6,7 +7,7 @@ function Header() {
     <div className='header'>
       <div className='logo'>Recipes <span>App</span></div>
       <div>2</div>
-      <div>3</div>
+      <Nav />
     </div>
   );
 }
