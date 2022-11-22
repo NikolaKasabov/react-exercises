@@ -12,7 +12,6 @@ function Categories() {
 
     axios.get('https://www.themealdb.com/api/json/v1/1/categories.php')
       .then(data => {
-        console.log(data);
         setCategories(data.data.categories);
       })
       .catch(err => {
@@ -36,7 +35,7 @@ function Categories() {
         {categories.map(category => (
           <div className='category' key={category.idCategory}>
             <img src={category.strCategoryThumb} alt={category.strCategory} />
-            <h3>{ category.strCategory}</h3>
+            <h3>{category.strCategory}</h3>
           </div>
         ))}
       </div>

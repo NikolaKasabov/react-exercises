@@ -1,0 +1,20 @@
+@import '../../variables.scss';
+
+.random-recipe {
+  .get-another-recipe-btn {
+    display: block;
+    margin: 30px auto;
+    border: 1px solid $primaryColor;
+    background-color: transparent;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: $primaryColor;
+    }
+  }
+}

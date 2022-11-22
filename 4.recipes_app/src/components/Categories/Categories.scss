@@ -2,9 +2,9 @@
 
 .categories {
   letter-spacing: 1px;
+  // color: $textColor;
 
   h1 {
-    color: #495057;
     text-align: center;
     margin: 40px 0;
   }
@@ -21,10 +21,10 @@
     box-shadow: 0 2px 2px 1px rgb(0, 0, 0, 0.1);
     border-radius: 10px;
     overflow: hidden;
-    transition: all 0.2s ease-in;
+    // transition: all 0.2s ease-in;
     
     &:hover {
-      box-shadow: 0 2px 2px 1px rgba($color: $primaryColor, $alpha: 0.3);
+      box-shadow: 0 2px 2px 1px rgba($color: $primaryColor, $alpha: 0.4);
     }
 
     img {
