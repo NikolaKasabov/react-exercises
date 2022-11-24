@@ -1,0 +1,22 @@
+@import '../../variables.scss';
+
+.recipe-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-right: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+
+  &:hover {
+    border-color: $primaryColor;
+  }
+
+  img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+}

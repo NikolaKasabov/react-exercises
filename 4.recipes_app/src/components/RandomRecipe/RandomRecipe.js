@@ -12,7 +12,6 @@ function RandomRecipe() {
     setIsLoading(true);
     axios.get('https://www.themealdb.com/api/json/v1/1/random.php')
       .then(data => {
-        // console.log(data);
         setRecipe(data?.data?.meals[0]);
       })
       .catch(err => console.log(err))

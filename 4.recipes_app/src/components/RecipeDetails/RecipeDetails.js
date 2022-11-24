@@ -29,10 +29,16 @@ function RecipeDetails({ recipe }) {
         </div>
       </div>
 
+      {recipe?.strYoutube && (
+        <div className='video'>
+          <h3>Video:</h3>
+          <a href={recipe?.strYoutube} target='blank'>{recipe?.strYoutube}</a>
+        </div>
+      )}
+
       <div className='instructions-container'>
         <h3>Instructions:</h3>
         <p>{recipe?.strInstructions}</p>
-        {/* <p dangerouslySetInnerHTML={{ __html: recipe?.strInstructions }}></p> */}
       </div>
     </div>
   );

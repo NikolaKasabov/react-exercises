@@ -5,6 +5,7 @@ import Footer from './components/Footer/Footer';
 import Loader from './components/Loader/Loader';
 import Categories from './components/Categories/Categories';
 import RandomRecipe from './components/RandomRecipe/RandomRecipe';
+import Category from './components/Category/Category';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Categories />} />
           <Route path='/random' element={<RandomRecipe />} />
+          <Route path='/category/:categoryId' element={<Category />} />
         </Routes>
         <Footer />
         {/* <Loader /> */}

@@ -27,15 +27,23 @@
     }
   }
 
-  .instructions-container {
-    h3 {
-      margin: 30px 0 20px;
+  .video {
+    h3{
+      margin: 30px 0 10px;
     }
   }
 
-  @media (max-width: 800px) {
-    padding: 0 10px;
+  .instructions-container {
+    h3 {
+      margin: 30px 0 10px;
+    }
+  }
 
+  @media (max-width: 1200px) {
+    padding: 0 10px;
+  }
+
+  @media (max-width: 800px) {
     .image-and-ingredients-container {
       display: block;
     }
