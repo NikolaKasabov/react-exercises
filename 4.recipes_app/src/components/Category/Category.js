@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import './Category.scss';
 import Loader from '../Loader/Loader';
@@ -9,6 +9,7 @@ function Category() {
   const [recipes, setRecipes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const params = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const { categoryId } = params;
@@ -23,7 +24,8 @@ function Category() {
   }, []);
 
   function recipeClickHandler(recipe) {
-    console.log(recipe);
+    // console.log(recipe);
+    navigate(`/recipe/${recipe.idMeal}`)
   }
 
   if (isLoading) {
@@ -37,7 +39,10 @@ function Category() {
   return (
     <div className='category'>
       {recipes.map(recipe => (
-        <RecipeCard key={recipe.idMeal} recipe={recipe} onClick={() => recipeClickHandler(recipe)} />
+        <RecipeCard key={recipe.idMeal}
+          recipe={recipe}
+          onClick={() => recipeClickHandler(recipe)}
+        />
       ))}
     </div>
   );
