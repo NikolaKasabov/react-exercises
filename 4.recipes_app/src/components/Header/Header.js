@@ -14,6 +14,7 @@ function Header() {
       return;
     }
 
+    setSearchTerm('');
     navigate(`/search/${searchTerm}`);
   }
 
@@ -21,7 +22,7 @@ function Header() {
     <div className='header' onSubmit={submitHandler}>
       <Link className='logo' to='/'>Recipes <span>App</span></Link>
       <form className='form'>
-        <input type="text" placeholder='search for ingredient...'
+        <input type="text" placeholder='search for recipe...'
           value={searchTerm}
           onChange={(ev) => setSearchTerm(ev.target.value)}
         />

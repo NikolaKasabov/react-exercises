@@ -24,7 +24,6 @@ function Category() {
   }, []);
 
   function recipeClickHandler(recipe) {
-    // console.log(recipe);
     navigate(`/recipe/${recipe.idMeal}`)
   }
 
