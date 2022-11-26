@@ -10,8 +10,47 @@
   .logo {
     font-size: 20px;
     font-weight: 500;
+    text-decoration: none;
+    color: $textColor;
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    &:visited {
+      color: $textColor;
+    }
+
     span {
       color: $primaryColor;
+    }
+  }
+
+  .form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    input {
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+
+      &:focus {
+        border: 1px solid $primaryColor;
+      }
+    }
+
+    button {
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+
+      svg{
+        width: 24px;
+        height: 24px;
+      }
     }
   }
 }
