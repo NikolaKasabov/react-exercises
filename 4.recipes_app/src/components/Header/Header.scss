@@ -53,4 +53,10 @@
       }
     }
   }
+
+  @media (max-width: 550px) {
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 20px;
+  }
 }
